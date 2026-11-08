@@ -20,6 +20,7 @@ model User {
   passwordHash String
   role         Role     @default(PATRON)
   createdAt    DateTime @default(now())
+  reviews      Review[]
 }
 
 model Genre {
@@ -39,6 +40,22 @@ model Book {
   createdAt       DateTime @default(now())
   genreId         Int
   genre           Genre    @relation(fields: [genreId], references: [id])
+  reviews         Review[]
 
   @@index([genreId])
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+  bookId    Int
+  userId    Int
+  book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // one review per user per book
+  @@unique([bookId, userId])
+  @@index([bookId])
 }

@@ -31,3 +31,10 @@ Full-stack library app: NestJS + Prisma + PostgreSQL (API), React (frontend, com
 - `email` and `isbn` are unique, enforced by the database.
 - `totalCopies` and `availableCopies` are separate so borrowing (Week 5)
   can change availability without losing the total.
+
+## Prisma vs a document database
+
+The biggest difference was that relationships are explicit. In a document
+database I would have embedded the genre inside each book and accepted some
+duplication. In Prisma, you declare a foreign key, and the database enforces it,
+so invalid links are rejected instead of silently stored.
