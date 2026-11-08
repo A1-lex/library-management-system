@@ -1,5 +1,7 @@
 # Library Management System
 
+File map: api/prisma/schema.prisma, api/prisma/seed.ts (4 genres, 20 books), api/src/prisma/prisma.service.ts, api/.env.example. Migrations are in api/prisma/migrations. Full contents are copied under Implementation Reference below.
+
 Full-stack library app: NestJS + Prisma + PostgreSQL (API), React (frontend, coming in Week 3).
 
 ## Setup (API)
