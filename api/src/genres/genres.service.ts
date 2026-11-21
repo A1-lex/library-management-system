@@ -8,7 +8,12 @@ export class GenresService {
   constructor(private readonly prisma: PrismaService) {}
 
   create(dto: CreateGenreDto) {
-    return this.prisma.genre.create({ data: dto });
+    const slug = dto.name
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '');
+    return this.prisma.genre.create({ data: { ...dto, slug } });
   }
 
   findAll() {
